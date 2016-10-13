@@ -5,6 +5,7 @@ $(document).ready(function(){
   $("#divMetodo").show();
   $("#divCodigo").hide();
   $("#divHistoria").hide();
+  $("#divResultados").hide();
   $("#cooX").focus();
 
   $("#metodoBtn").click(function(){
@@ -30,6 +31,10 @@ $(document).ready(function(){
     addRowIfClick();
   }); //funcion agregar row en evento clickdel boton addBtn
 
+  $("#btnEval").click(function() {
+    addRowEval();
+  });
+
   $("#cooX").keypress(function(ev) {
     var keycode = (ev.keyCode ? ev.keyCode : ev.which);
     if(keycode == '13'){
@@ -43,6 +48,13 @@ $(document).ready(function(){
       addRowIfClick();
     }
   });
+  $("#evX").keypress(function(ev) {
+    var keycode = (ev.keyCode ? ev.keyCode : ev.which);
+    if(keycode == '13'){
+      addRowEval();
+    }
+  });
+
 });
 
 function addRowIfClick(){
@@ -88,6 +100,36 @@ function deleteRow(num){
   });
 }
 
+function deleteRowEval(num){
+  // borra una fila en la tabla
+  var selector = "#trEv" + num;
+  $(selector).remove();
+}
+
+function addRowEval(){
+  var x = $("#evX").val();
+  var data = getData();
+  var control = false;
+  if(x.length > 0){
+    control = true;
+  }else{
+    alert("INGRESA UNA COORDENADA X PARA EVALUAR Y");
+  }
+  if(control){
+
+    var y = laGrange(x,data);
+    var trs=$("#tablaDeEvaluaciones tr").length;
+    var nuevaRow = "<tr id='trEv"+ (trs-1) +"'>";
+    nuevaRow += "<td class='evCoX'>"+ x +"</td>";
+    nuevaRow += "<td class='evCoY'>"+ y +"</td>";
+    nuevaRow += "<td class='borrar'> <img src='media/delete.png' alt='quitar' class='imgBorrar' onClick='deleteRowEval("+(trs-1)+")'></td>" //boton borrar
+    nuevaRow += "</tr>";
+    $('#tablaDeEvaluaciones tr:last').after(nuevaRow);
+    $("#evX").val("");
+    $("#evX").focus();
+  }
+}
+
 function getData(){
   //esta funcion obtiene la informacion ingresada en las observaciones iniciales
   var objData = {
@@ -130,6 +172,7 @@ function getData(){
 }
 
 function calcular(){
+  $("#divResultados").show();
   var data = getData();
   var polinomio = textoLaGrange(data);
   $("#pPolinomio").text(polinomio);
@@ -201,6 +244,7 @@ function laGrange(x,data){
   }
   return resultado;
 }
+
 function textoLaGrange(data){
   var n = data.X.length - 1;
   var cadena = "";

@@ -52,7 +52,7 @@ body{
 .titleMethod{
   padding-bottom: 15px;
 }
-#tabObs{
+#tabObs,#tabEval{
   padding-top: 20px;
 }
 #divObsInic, #divResultados{
