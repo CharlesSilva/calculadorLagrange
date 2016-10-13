@@ -55,7 +55,7 @@ body{
 #tabObs{
   padding-top: 20px;
 }
-#divObsInic{
+#divObsInic, #divResultados{
   border-style:groove;
   border-width: 1px;
   border-color: #0000ff;

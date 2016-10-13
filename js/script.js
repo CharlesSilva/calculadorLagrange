@@ -5,11 +5,13 @@ $(document).ready(function(){
   $("#divMetodo").show();
   $("#divCodigo").hide();
   $("#divHistoria").hide();
+  $("#cooX").focus();
 
   $("#metodoBtn").click(function(){
     $("#divMetodo").show();
     $("#divCodigo").hide();
     $("#divHistoria").hide();
+    $("#cooX").focus();
   });
 
   $("#codigoBtn").click(function(){
@@ -69,6 +71,7 @@ function addRowIfClick(){
     $("#cooX").val("");
     $("#cooY").val("");
   }
+  $("#cooX").focus();
 }
 
 function deleteRow(num){
@@ -126,6 +129,12 @@ function getData(){
   return objData;
 }
 
+function calcular(){
+  var data = getData();
+  var polinomio = textoLaGrange(data);
+  $("#pPolinomio").text(polinomio);
+}
+
 
 
 ///////////FIN CODIGO FUNCIONAMIENTO DE LA PAGINA///////////////
@@ -170,10 +179,10 @@ function textolK(k,arrX){
     var xj = arrX[j];
     if(j != k){ // restriccion de la formula lk(x)
         if(primeraIteracion){ // evaluamos si es la primera vez que se calcula el valor
-            cadena = "((x -" + xj + ")/(" + xk + "-" + xj +"))"; // se calcula el valor de resultado por primera vez
+            cadena = "[(x - " + xj + ")/(" + xk + " - " + xj +")]"; // se calcula el valor de resultado por primera vez
             primeraIteracion = false; // el control se establece en falso para no volver a calcular el valor de esta forma
         }else{ // se ejecuta este bloque de codigo si no es la primera vez que se calcula resultado
-            cadena = cadena + "+ ((x -" + xj + ")/(" + xk + "-" + xj + "))"; // se calcula el valor de resultado como un acumulador
+            cadena = cadena + " * [(x - " + xj + ")/(" + xk + " - " + xj + ")]"; // se calcula el valor de resultado como un acumulador
         }
     }
   }
@@ -183,6 +192,25 @@ function textolK(k,arrX){
 /*
  * funcion que calcula un valor aproximado para y dado un x
  */
- function laGrange(x,obs){
-
- }
+function laGrange(x,data){
+  var n = data.X.length - 1;
+  var resultado = 0;
+  for (var k = 0; k <= n; k++){
+    var yk = data.Y[k];
+    resultado = resultado + (yk * lk(k,x,data.X));
+  }
+  return resultado;
+}
+function textoLaGrange(data){
+  var n = data.X.length - 1;
+  var cadena = "";
+  for (var k = 0; k <= n; k++) {
+    var yk = data.Y[k];
+    if(k != 0){
+      cadena += " + "
+    }
+    cadena = cadena + "{ "+ yk +" * "+ textolK(k,data.X) +" }"
+  }
+  console.log(cadena);
+  return cadena;
+}
