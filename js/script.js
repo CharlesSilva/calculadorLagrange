@@ -158,7 +158,31 @@ function lk(k,x,arrX){
     }
     return resultado;
 }
+function textolK(k,arrX){
+  var x = "x";
+  var n = arrX.length - 1;
+  var j = 0 ;
+  var resultado;
+  var primeraIteracion = true;
+  var xk = arrX[k];
+  var cadena = "";
+  for(j=0; j<=n; j++){
+    var xj = arrX[j];
+    if(j != k){ // restriccion de la formula lk(x)
+        if(primeraIteracion){ // evaluamos si es la primera vez que se calcula el valor
+            cadena = "((x -" + xj + ")/(" + xk + "-" + xj +"))"; // se calcula el valor de resultado por primera vez
+            primeraIteracion = false; // el control se establece en falso para no volver a calcular el valor de esta forma
+        }else{ // se ejecuta este bloque de codigo si no es la primera vez que se calcula resultado
+            cadena = cadena + "+ ((x -" + xj + ")/(" + xk + "-" + xj + "))"; // se calcula el valor de resultado como un acumulador
+        }
+    }
+  }
+  return cadena;
+}
 
 /*
- *
+ * funcion que calcula un valor aproximado para y dado un x
  */
+ function laGrange(x,obs){
+
+ }
