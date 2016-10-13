@@ -1,0 +1,164 @@
+///////////CODIGO FUNCIONAMIENTO DE LA PAGINA///////////////////
+
+$(document).ready(function(){
+
+  $("#divMetodo").show();
+  $("#divCodigo").hide();
+  $("#divHistoria").hide();
+
+  $("#metodoBtn").click(function(){
+    $("#divMetodo").show();
+    $("#divCodigo").hide();
+    $("#divHistoria").hide();
+  });
+
+  $("#codigoBtn").click(function(){
+    $("#divMetodo").hide();
+    $("#divCodigo").show();
+    $("#divHistoria").hide();
+  });
+
+  $("#historiaBtn").click(function(){
+    $("#divMetodo").hide();
+    $("#divCodigo").hide();
+    $("#divHistoria").show();
+  });
+
+  $("#addBtn").click(function(){
+    addRowIfClick();
+  }); //funcion agregar row en evento clickdel boton addBtn
+
+  $("#cooX").keypress(function(ev) {
+    var keycode = (ev.keyCode ? ev.keyCode : ev.which);
+    if(keycode == '13'){
+      addRowIfClick();
+    }
+  });
+
+  $("#cooY").keypress(function(ev) {
+    var keycode = (ev.keyCode ? ev.keyCode : ev.which);
+    if(keycode == '13'){
+      addRowIfClick();
+    }
+  });
+});
+
+function addRowIfClick(){
+  var x = $("#cooX").val();
+  var y = $("#cooY").val();
+  var control = false;
+
+  if(x.length > 0 && y.length > 0){
+    control = true;
+  }else{
+    if(x.length == 0){
+      alert("ingresa un valor para la coordenada X");
+    }else{
+      alert("ingresa un valor para la coordenada Y");
+    }
+  }
+  if(control){
+    var trs=$("#tablaDeObservaciones tr").length; // obtenemos el numero de filas existentes
+    var nuevaRow = "<tr id='tr"+ (trs-1) +"'>";
+    nuevaRow += "<td id='tdN"+ (trs-1) +"' class='tdN'>"+ (trs-1) +"</td>"; // columna de n
+    nuevaRow += "<td id='tdX"+ (trs-1) +"' class='tdX'>"+ x + "</td>"; // columna de x
+    nuevaRow += "<td id='tdY"+ (trs-1) +"' class='tdY'>"+ y + "</td>"; // columna de y
+    nuevaRow += "<td id='tdDel"+ (trs-1) +"' class='borrar'> <img src='media/delete.png' alt='quitar' class='imgBorrar' onClick='deleteRow("+(trs-1)+")'></td>" //boton borrar
+    nuevaRow += "</td>";
+    $('#tablaDeObservaciones tr:last').after(nuevaRow);
+    $("#cooX").val("");
+    $("#cooY").val("");
+  }
+}
+
+function deleteRow(num){
+  // borra una fila en la tabla
+  var selector = "#tr" + num;
+  $(selector).remove();
+  // se actualiza el valor de las n
+  var trs=$("#tablaDeObservaciones tr").length; // obtenemos el numero de filas existentes
+  var totTr = $("#tablaDeObservaciones tr");
+  var cnt = 0;
+  $(".tdN").each(function() {
+    $(this).text(cnt);
+    cnt = cnt + 1;
+  });
+}
+
+function getData(){
+  //esta funcion obtiene la informacion ingresada en las observaciones iniciales
+  var objData = {
+    N : [],
+    X : [],
+    Y : []
+  };
+  var n = 0; // control de iteracion de n
+  $(".tdN").each(function(){
+    objData.N[n] = $(this).text(); // guardamos el valor de n
+    n++;
+  });
+  var x = 0; // control de iteracion de x
+  $(".tdX").each(function(){
+    objData.X[x] = $(this).text(); // guardamos el valor de x
+    x++;
+  });
+  var y = 0; // control de iteracion de y
+  $(".tdY").each(function(){
+    objData.Y[y] = $(this).text(); // guardamos el valor de y
+    y++;
+  });
+  if(n == 0){
+    // se notifica al usuario que no hay datos para recuperar | tabla vacia
+    alert("INGRESE VALORES INICIALES");
+  }else {
+    // se impime en consola retroalimentacion para saber que se esta calculando
+    // solo con propositos de control
+    console.log("SE RECUPERARON LAS OBSERVACIONES INICIALES");
+  }
+  /*
+  //este bloque puede ser usado para comprobar los valores obtenidos d la tabla
+  var max = objData.N.length
+  for (i = 0; i < max; i++) {
+    var cadena = "n: " + objData.N[i] + " x: " + objData.X[i] + " y: " + objData.Y[i];
+    alert(cadena);
+  }
+  */
+  return objData;
+}
+
+
+
+///////////FIN CODIGO FUNCIONAMIENTO DE LA PAGINA///////////////
+/////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+//////////CODIGO METODO LAGRANGE////////////////////////////////
+/*
+ * funcion que nos regresa el valor de lk evaluada en una x deseada
+ */
+function lk(k,x,arrX){
+    // k = coordenada y
+    // x = variable para evaluar la funcion
+    var n = arrX.length - 1;// numero de observaciones
+    var j = 0 //control de la iteracion
+    var resultado = 0; // guarda el resultado de la evaluacion
+    var primeraIteracion = true; // control de la primera coincidencia para ser evaluada
+    // se usa este control para saber cuando debemos usar la varible resultado como acumulador o como valor inicial
+    var xk = arrX[k]; // valor de la coordenada x con n = k
+    for(j=0; j<=n; j++){ // itera todos los valores
+        var xj = arrX[j];
+
+        if(j != k){ // restriccion de la formula lk(x)
+            if(primeraIteracion){ // evaluamos si es la primera vez que se calcula el valor
+                resultado = ((x-xj)/(xk-xj)); // se calcula el valor de resultado por primera vez
+                primeraIteracion = false; // el control se establece en falso para no volver a calcular el valor de esta forma
+            }else{ // se ejecuta este bloque de codigo si no es la primera vez que se calcula resultado
+                resultado = resultado * ((x-xj)/(xk-xj)); // se calcula el valor de resultado como un acumulador
+            }
+        }
+    }
+    return resultado;
+}
+
+/*
+ *
+ */

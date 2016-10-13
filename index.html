@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Solver</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/script.js"></script>
+    <div class="container-fluid">
+      <!-- INICIO HEADER COMPLETO -->
+      <div class="row gray-color header">
+        <div class="col-md-5 col-sm-7 col-xs-12">
+          <img src="media/laGrange.png" alt="avatar" id="logo" />
+        </div>
+        <div class="col-md-2 ">
+        </div>
+
+      </div>
+      <div class="row gray-color " id="subHeader">
+        <div class="col-md-1 col-sm-2 col-xs-4 col-md-offset-9 col-sm-offset-6 col-xs-offset-0 linkBtn" id="metodoBtn">
+          METODO
+        </div>
+        <div class="col-md-1 col-sm-2 col-xs-4 linkBtn" id="codigoBtn">
+          CODIGO
+        </div>
+        <div class="col-md-1 col-sm-2 col-xs-4 linkBtn" id="historiaBtn">
+          HISTORIA
+        </div>
+      </div>
+      <!-- FIN HEADER COMPLETO -->
+      <!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+      <div id="divContenido">
+        <div id="divMetodo">
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 titleMethod">
+              <h1>METODO DE LAGRANGE</h1>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 titleMethod">
+              <div class="alert alert-info" role="alert">
+                <b>INSTRUCCIONES: </b>ingresa las coordenadas de los puntos en su respectivo campo y preciona agregar
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6" id="divObsInic">
+              <div class="row">
+                <h3 class="col-md-10 col-sm-10 col-xs-12">OBSERVACIONES INICIALES</h3>
+                <button type="button" name="button" onclick="getData()" class="col-md-2 col-sm-2 col-xs-12 btn btn-info">Calcular P(n)</button>
+              </div>
+              <div class="row">
+                <form class="form-inline">
+                  <div class="form-group col-md-5 col-sm-3 col-xs-5">
+                    <label for="cooX"></label>
+                    <input type="number" name="cooX" id="cooX" class="form-control" placeholder="Coordenada X">
+                  </div>
+                  <div class="form-group col-md-5 col-sm-3  col-xs-5">
+                    <label for="cooY"></label>
+                    <input type="number" name="cooY" id="cooY" class="form-control" placeholder="Cooredenada Y">
+                  </div>
+                  <div class="form-group col-md-2 col-sm-2 col-xs-1">
+                    <input type="button" name="addBtn" id="addBtn" class="btn btn-success" value="Agregar">
+                  </div>
+                </form>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12" id="tabObs">
+                  <table class="table table-striped table-bordered table-hover table-condensed" id="tablaDeObservaciones" >
+                    <thead>
+                      <th>n</th>
+                      <th>Xn</th>
+                      <th>Yn</th>
+                      <th>Borrar</th>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+        <div id="divCodigo">
+          CODIGO :D
+        </div>
+        <div id="divHistoria">
+          HISTORIA :D
+        </div>
+      </div><!-- FIN DIV CONTENIDO -->
+
+
+
+    </div>
+  </body>
+</html>
