@@ -16,7 +16,7 @@
       <!-- INICIO HEADER COMPLETO -->
       <div class="row gray-color header">
         <div class="col-md-5 col-sm-7 col-xs-12">
-          <img src="media/laGrange.png" alt="avatar" id="logo" />
+          <h1>LAGRANGE</h1>
         </div>
         <div class="col-md-2 ">
         </div>
@@ -39,16 +39,10 @@
         <div id="divMetodo">
           <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12 titleMethod">
-              <h1>METODO DE LAGRANGE</h1>
+              <h2>Metodo</h1>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12 titleMethod">
-              <div class="alert alert-info" role="alert">
-                <b>INSTRUCCIONES: </b>ingresa las coordenadas de los puntos en su respectivo campo y preciona agregar
-              </div>
-            </div>
-          </div>
+
           <div class="row">
             <div class="col-md-6" id="divObsInic">
               <div class="row">
@@ -106,13 +100,13 @@
                 </div>
               </div>
               <div class="row">
-                <form class="form-inline">
+                <form class="form-inline" id="evalFrm">
                   <div class="form-group col-md-5 col-sm-3 col-xs-5">
                     <label for="evX"></label>
-                    <input type="number" name="evX" id="evX" class="form-control" placeholder="Nueva coordenada X">
+                    <input type="number" name="evX" id="evX" class="form-control" placeholder="Nueva coordenada X" onkeypress="addEvalEnter(event)">
                   </div>
                   <div class="form-group col-md-2 col-sm-2 col-xs-1">
-                    <input type="button" name="btnEval" id="btnEval" class="btn btn-success" value="Calcular Y">
+                    <input type="button"  id="btnEval" class="btn btn-success" value="Calcular Y" >
                   </div>
                 </form>
               </div>
@@ -138,10 +132,91 @@
 
         </div>
         <div id="divCodigo">
-          CODIGO :D
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <h4 class="center-block">Funcion Lk(x)</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <img src="media/lk.png" alt="funcion Lk(x)" class="center-block"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <img src="media/codigoLk.png" alt="funcion Lk(x)" class="center-block"/>
+            </div>
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <hr>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <h4 class="center-block">Funcion laGrange(x,data)</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <img src="media/fLaGrange.png" alt="funcion Lk(x)" class="center-block"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <img src="media/codigoLagrange.png" alt="funcion Lk(x)" class="center-block"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <hr>
+            </div>
+          </div>
+          <!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <h4 class="center-block">Funcion textoLk(x)</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <img src="media/lk.png" alt="funcion Lk(x)" class="center-block"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <img src="media/textoLk.png" alt="funcion Lk(x)" class="center-block"/>
+            </div>
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <hr>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <h4 class="center-block">Funcion TextoLaGrange(x,data)</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <img src="media/fLaGrange.png" alt="funcion Lk(x)" class="center-block"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <img src="media/textoLagrange.png" alt="funcion Lk(x)" class="center-block"/>
+            </div>
+          </div>
+
         </div>
         <div id="divHistoria">
-          HISTORIA :D
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <img src="media/historia.png" alt="HISTORIA" class="center-block"/>
+            </div>
+          </div>
+
         </div>
       </div><!-- FIN DIV CONTENIDO -->
 

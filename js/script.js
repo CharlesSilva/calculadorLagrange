@@ -3,12 +3,16 @@
 $(document).ready(function(){
 
   $("#divMetodo").show();
+  $("#metodoBtn").addClass("linkBtnSel");
   $("#divCodigo").hide();
   $("#divHistoria").hide();
   $("#divResultados").hide();
   $("#cooX").focus();
 
   $("#metodoBtn").click(function(){
+    $("#metodoBtn").addClass("linkBtnSel");
+    $("#codigoBtn").removeClass("linkBtnSel");
+    $("#historiaBtn").removeClass("linkBtnSel");
     $("#divMetodo").show();
     $("#divCodigo").hide();
     $("#divHistoria").hide();
@@ -16,12 +20,18 @@ $(document).ready(function(){
   });
 
   $("#codigoBtn").click(function(){
+    $("#codigoBtn").addClass("linkBtnSel");
+    $("#metodoBtn").removeClass("linkBtnSel");
+    $("#historiaBtn").removeClass("linkBtnSel");
     $("#divMetodo").hide();
     $("#divCodigo").show();
     $("#divHistoria").hide();
   });
 
   $("#historiaBtn").click(function(){
+    $("#historiaBtn").addClass("linkBtnSel");
+    $("#metodoBtn").removeClass("linkBtnSel");
+    $("#codigoBtn").removeClass("linkBtnSel");
     $("#divMetodo").hide();
     $("#divCodigo").hide();
     $("#divHistoria").show();
@@ -48,14 +58,18 @@ $(document).ready(function(){
       addRowIfClick();
     }
   });
-  $("#evX").keypress(function(ev) {
-    var keycode = (ev.keyCode ? ev.keyCode : ev.which);
-    if(keycode == '13'){
-      addRowEval();
-    }
+  $("#evalFrm").submit(function(event) {
+    event.preventDefault();
   });
 
 });
+
+function addEvalEnter(ev){
+  var keycode = (ev.keyCode ? ev.keyCode : ev.which);
+  if(keycode == '13'){
+    addRowEval();
+  }
+}
 
 function addRowIfClick(){
   var x = $("#cooX").val();
@@ -184,6 +198,7 @@ function calcular(){
 /////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
 //////////CODIGO METODO LAGRANGE////////////////////////////////
+
 /*
  * funcion que nos regresa el valor de lk evaluada en una x deseada
  */
@@ -210,6 +225,7 @@ function lk(k,x,arrX){
     }
     return resultado;
 }
+
 function textolK(k,arrX){
   var x = "x";
   var n = arrX.length - 1;
